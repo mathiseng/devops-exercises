@@ -1,0 +1,35 @@
++ CONFIG=./seed.iso
++ '[' '!' -f ./seed.iso ']'
++ echo 'Creating new config for ssh'
+Creating new config for ssh
++ mkisofs -output seed.iso -volid cidata -joliet -rock ./cloud-init/user-data ./cloud-init/meta-data
+Total translation table size: 0
+Total rockridge attributes bytes: 363
+Total directory bytes: 0
+Path table size(bytes): 10
+Max brk space used 0
+183 extents written (0 MB)
++ echo 'Starting the VM...'
+Starting the VM...
++ echo 'Waiting for the VM to boot...'
+Waiting for the VM to boot...
++ sleep 50
++ nohup qemu-system-x86_64 -m 20G -smp 4 -hda ./ubuntu-22.04-server-cloudimg-amd64.img -cdrom ./seed.iso -netdev user,id=n1,hostfwd=tcp::2222-:22 -device virtio-net-pci,netdev=n1
++ echo 'Deploying application in the VM...'
+Deploying application in the VM...
++ bash deploy.sh
++ cd ./webservice
++ go get -t ./...
++ GOARCH=amd64
++ GOOS=linux
++ go build -o artifact.bin
++ cd ..
++ scp -P 2222 -r ./webservice/artifact.bin user1@127.0.0.1:/home/user1/
++ echo 'Waiting for ssh connection...'
+Waiting for ssh connection...
++ sleep 15
++ nohup ssh -L 8080:127.0.0.1:3000 -p 2222 user1@127.0.0.1 ./artifact.bin
++ echo 'Sending request...'
+Sending request...
++ curl -s http://localhost:8080
+Hello, World!

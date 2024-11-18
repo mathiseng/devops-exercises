@@ -1,0 +1,12 @@
+
+ ┌───────────────────────────────────────────────────┐ 
+ │                    webservice                     │ 
+ │                   Fiber v2.51.0                   │ 
+ │               http://127.0.0.1:3000               │ 
+ │                                                   │ 
+ │ Handlers ............ 27  Processes ........... 1 │ 
+ │ Prefork ....... Disabled  PID ............... 948 │ 
+ └───────────────────────────────────────────────────┘ 
+
+time=2024-11-18T09:26:44.202Z level=DEBUG msg="GET /  mime:*/*  agent:curl/8.7.1"
+Connection to 127.0.0.1 closed by remote host.
