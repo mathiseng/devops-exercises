@@ -1,0 +1,5 @@
+# https://stackoverflow.com/a/40387260/20470359
+FROM google/cloud-sdk
+
+#to prevent the container from stopping directly after executing the commands i needed to add this code https://stackoverflow.com/questions/30209776/docker-container-will-automatically-stop-after-docker-run-d
+CMD gcloud auth activate-service-account --key-file=/tmp/keys/credentials.json && tail -f /dev/null

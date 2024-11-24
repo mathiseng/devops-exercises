@@ -1,0 +1,103 @@
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:4> echo 'Build the webservice image with the defined Containerfile...'
+Build the webservice image with the defined Containerfile...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:5> podman build -t gcloud-img '-f=Containerfile-gcloud' .
+STEP 1/2: FROM google/cloud-sdk
+WARNING: image platform (linux/amd64) does not match the expected platform (linux/arm64)
+STEP 2/2: CMD gcloud auth activate-service-account --key-file=/tmp/keys/credentials.json && tail -f /dev/null
+--> Using cache b8c7a12b4837b03b7ab38a0906e6da898fb1cce035193c08494fbe0dc363b7a8
+COMMIT gcloud-img
+--> b8c7a12b4837
+Successfully tagged localhost/gcloud-img:latest
+b8c7a12b4837b03b7ab38a0906e6da898fb1cce035193c08494fbe0dc363b7a8
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:7> echo '\nCreate and start the gcloud-container...'
+
+Create and start the gcloud-container...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:12> podman run -d --platform linux/amd64 -v /Users/men/gcloud/credentials.json:/tmp/keys/credentials.json:ro -e 'GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/credentials.json' '--name=gcloud-container' gcloud-img
+a814f7ae0cd77ea6d4a9e133a0668b1670fcb908b51cc5fb6734729dcad74960
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:17> echo '\n\nShow running containers...'
+
+
+Show running containers...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:18> podman ps -a
+CONTAINER ID  IMAGE                        COMMAND               CREATED                 STATUS                 PORTS       NAMES
+a814f7ae0cd7  localhost/gcloud-img:latest  /bin/sh -c gcloud...  Less than a second ago  Up Less than a second              gcloud-container
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:22> podman exec -it gcloud-container gcloud config set account devops-university@capable-sphinx-442212-k8.iam.gserviceaccount.com
+Updated property [core/account].
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:23> podman exec -it gcloud-container gcloud config set project capable-sphinx-442212-k8
+Updated property [core/project].
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:25> echo '\n\nShow that account is active and ressources can be created...'
+
+
+Show that account is active and ressources can be created...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:26> podman exec -it gcloud-container gcloud auth list
+                          Credentialed Accounts
+ACTIVE  ACCOUNT
+*       devops-university@capable-sphinx-442212-k8.iam.gserviceaccount.com
+
+To set the active account, run:
+    $ gcloud config set account `ACCOUNT`
+
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:30> echo '\n\nTest creation of resources...'
+
+
+Test creation of resources...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:31> podman exec -it gcloud-container gcloud storage buckets create gs://my-devops-test-bucket-bht
+Creating gs://my-devops-test-bucket-bht/...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:32> podman exec -it gcloud-container gcloud storage buckets list
+---
+acl:
+- entity: project-owners-290516546671
+  projectTeam:
+    projectNumber: '290516546671'
+    team: owners
+  role: OWNER
+- entity: project-editors-290516546671
+  projectTeam:
+    projectNumber: '290516546671'
+    team: editors
+  role: OWNER
+- entity: project-viewers-290516546671
+  projectTeam:
+    projectNumber: '290516546671'
+    team: viewers
+  role: READER
+creation_time: 2024-11-23T17:18:28+0000
+default_acl:
+- entity: project-owners-290516546671
+  projectTeam:
+    projectNumber: '290516546671'
+    team: owners
+  role: OWNER
+- entity: project-editors-290516546671
+  projectTeam:
+    projectNumber: '290516546671'
+    team: editors
+  role: OWNER
+- entity: project-viewers-290516546671
+  projectTeam:
+    projectNumber: '290516546671'
+    team: viewers
+  role: READER
+default_storage_class: STANDARD
+generation: 1732382308039407523
+location: US
+location_type: multi-region
+metageneration: 1
+name: my-devops-test-bucket-bht
+public_access_prevention: inherited
+rpo: DEFAULT
+soft_delete_policy:
+  effectiveTime: '2024-11-23T17:18:28.302000+00:00'
+  retentionDurationSeconds: '604800'
+storage_url: gs://my-devops-test-bucket-bht/
+uniform_bucket_level_access: false
+update_time: 2024-11-23T17:18:28+0000
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:33> podman exec -it gcloud-container gcloud storage buckets delete gs://my-devops-test-bucket-bht
+                                                                                                                                                                                   Completed 0/1Removing gs://my-devops-test-bucket-bht/...
+                                                                                                                                                                                   Completed 0/1⠛                                                                                                                                                                                   Completed 0/1⠹                                                                                                                                                                                   Completed 0/1⠼                                                                                                                                                                                   Completed 0/1⠶                                                                                                                                                                                   Completed 1/1
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:37> echo '\n\nStop webservice-container and remove the container...'
+
+
+Stop webservice-container and remove the container...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/gcloud-exercise.sh:38> podman rm -f gcloud-container
+gcloud-container
