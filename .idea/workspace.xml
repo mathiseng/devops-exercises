@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d138a7fa-73e4-4a99-b3e4-1072fd03b8c3" name="Changes" comment="Update ci-pipeline.yml">
-      <change beforePath="$PROJECT_DIR$/Exercise_1_Define_and_run_a_pipeline/Exercise_1_Define_and_run_a_pipeline/Branch_Stategy.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Exercise_1_Define_and_run_a_pipeline/Exercise_1_Define_and_run_a_pipeline/ci-pipeline.yml" beforeDir="false" />
+    <list default="true" id="d138a7fa-73e4-4a99-b3e4-1072fd03b8c3" name="Changes" comment="Exercise-2: Spin up a virtual machine locally">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +23,7 @@
         <entry key="$PROJECT_DIR$" value="Concept" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Exercise_1_Define_and_run_a_pipeline" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -34,20 +33,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/men/Documents/Uni/DEV-OPS/webservice-fork/.github/Exercise_0_Learn_git_workflows",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Exercise_3_Start_a_container_image" />
       <recent name="$PROJECT_DIR$/.github/Exercise_0_Learn_git_workflows" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Exercise_1_Define_and_run_a_pipeline" />
@@ -61,7 +62,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96" />
       </set>
     </attachedChunks>
   </component>
@@ -75,6 +76,7 @@
       <updated>1729628802975</updated>
       <workItem from="1729628803996" duration="4546000" />
       <workItem from="1729861802113" duration="22288000" />
+      <workItem from="1732360338053" duration="18788000" />
     </task>
     <task id="LOCAL-00001" summary="Update ci-pipeline.yml">
       <option name="closed" value="true" />

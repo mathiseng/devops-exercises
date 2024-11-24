@@ -1,0 +1,41 @@
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/webservice-exercise.sh:4> echo 'Build the webservice image with the defined Containerfile...'
+Build the webservice image with the defined Containerfile...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/webservice-exercise.sh:5> podman build -t webservice '-f=Containerfile-webservice' .
+STEP 1/4: FROM ubuntu
+STEP 2/4: COPY ./artifact.bin ./artifact.bin
+--> Using cache bb160483d47ab0a2799a14ceda9c94508f0f1153b65b1edc1ed32457b3470851
+--> bb160483d47a
+STEP 3/4: ENV HOST 0.0.0.0
+--> Using cache ad553f6ad19dd067af4f98259015dbba7635686e703342e9e0afd1c13307eff0
+--> ad553f6ad19d
+STEP 4/4: CMD ["./artifact.bin"]
+--> Using cache 3bae79a2687bd29bcf6669243834de61ea727cf608cad071655dcf5c4ab5c9f2
+COMMIT webservice
+--> 3bae79a2687b
+Successfully tagged localhost/webservice:latest
+3bae79a2687bd29bcf6669243834de61ea727cf608cad071655dcf5c4ab5c9f2
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/webservice-exercise.sh:8> echo '\nCreate and start the webservice-container...'
+
+Create and start the webservice-container...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/webservice-exercise.sh:9> podman run -d -p 8080:3000 '--name=webservice-container' webservice
+729a0549053da03b7de8c04babb94c30cf257a0d52f97ee4821997bbdcb5eff9
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/webservice-exercise.sh:11> echo '\nSending request...'
+
+Sending request...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/webservice-exercise.sh:12> curl http://localhost:8080
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    13  100    13    0     0    315      0 --:--:-- --:--:-- --:--:--   317
+Hello, World!+/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/webservice-exercise.sh:14> echo '\n\nShow running containers...'
+
+
+Show running containers...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/webservice-exercise.sh:15> podman ps -a
+CONTAINER ID  IMAGE                        COMMAND         CREATED                 STATUS                 PORTS                   NAMES
+729a0549053d  localhost/webservice:latest  ./artifact.bin  Less than a second ago  Up Less than a second  0.0.0.0:8080->3000/tcp  webservice-container
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/webservice-exercise.sh:18> echo '\n\nStop webservice-container and remove the container...'
+
+
+Stop webservice-container and remove the container...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_3_Start_a_container_image/webservice-exercise.sh:19> podman rm -f webservice-container
+webservice-container
