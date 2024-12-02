@@ -1,0 +1,37 @@
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_4_build_and_push_container_image_from_pipeline/confirm-container.sh:6> echo 'Pull the image from GitHub'
+Pull the image from GitHub
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_4_build_and_push_container_image_from_pipeline/confirm-container.sh:7> podman pull ghcr.io/mathiseng/podman-webservice:test
+Trying to pull ghcr.io/mathiseng/podman-webservice:test...
+Getting image source signatures
+Copying blob sha256:05789d859c7bcd36037ef6dab4ede4c6e196e23e12562a7f6391e2d5c9596ca3
+Copying blob sha256:7daed09b85d5906f4ede28d0df94a30a091fdf48b24b0721eaddbcc2d3ebfcec
+Copying config sha256:2a298c79134992bc58f4722ee1194728c866a67e50ffc900d4122acf4f8f5a61
+Writing manifest to image destination
+WARNING: image platform (linux/amd64) does not match the expected platform (linux/arm64)
+2a298c79134992bc58f4722ee1194728c866a67e50ffc900d4122acf4f8f5a61
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_4_build_and_push_container_image_from_pipeline/confirm-container.sh:10> echo '\nCreate and start the container with the pulled image...'
+
+Create and start the container with the pulled image...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_4_build_and_push_container_image_from_pipeline/confirm-container.sh:11> podman run -d -p 8080:3000 '--name=webservice-container' ghcr.io/mathiseng/podman-webservice:test
+WARNING: image platform (linux/amd64) does not match the expected platform (linux/arm64)
+af85cf9c12c9e1f36d47e63ea05fd2de179fc5a2c2bc3015fdf48457ac07bd13
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_4_build_and_push_container_image_from_pipeline/confirm-container.sh:13> echo '\nSending request...'
+
+Sending request...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_4_build_and_push_container_image_from_pipeline/confirm-container.sh:14> curl http://localhost:8080
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    13  100    13    0     0    312      0 --:--:-- --:--:-- --:--:--   317
+Hello, World!+/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_4_build_and_push_container_image_from_pipeline/confirm-container.sh:16> echo '\n\nShow running containers...'
+
+
+Show running containers...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_4_build_and_push_container_image_from_pipeline/confirm-container.sh:17> podman ps -a
+CONTAINER ID  IMAGE                                     COMMAND         CREATED                 STATUS                 PORTS                   NAMES
+af85cf9c12c9  ghcr.io/mathiseng/podman-webservice:test  ./artifact.bin  Less than a second ago  Up Less than a second  0.0.0.0:8080->3000/tcp  webservice-container
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_4_build_and_push_container_image_from_pipeline/confirm-container.sh:20> echo '\n\nStop webservice-container and remove the container...'
+
+
+Stop webservice-container and remove the container...
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_4_build_and_push_container_image_from_pipeline/confirm-container.sh:21> podman rm -f webservice-container
+webservice-container
