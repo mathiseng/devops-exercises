@@ -1,0 +1,24 @@
+Warning: Permanently added 'compute.5228436204197367675' (ED25519) to the list of known hosts.
+
+ ┌───────────────────────────────────────────────────┐ 
+ │                    webservice                     │ 
+ │                   Fiber v2.51.0                   │ 
+ │               http://127.0.0.1:3000               │ 
+ │                                                   │ 
+ │ Handlers ............ 27  Processes ........... 1 │ 
+ │ Prefork ....... Disabled  PID .............. 1523 │ 
+ └───────────────────────────────────────────────────┘ 
+
+time=2024-12-07T16:03:31.332Z level=DEBUG msg="GET /  mime:*/*  agent:curl/8.7.1"
+Connection to 34.78.184.232 closed by remote host.
+
+Recommendation: To check for possible causes of SSH connectivity issues and get
+recommendations, rerun the ssh command with the --troubleshoot option.
+
+gcloud compute ssh my-devops-vm --project=capable-sphinx-442212-k8 --zone=europe-west1-b --troubleshoot
+
+Or, to investigate an IAP tunneling issue:
+
+gcloud compute ssh my-devops-vm --project=capable-sphinx-442212-k8 --zone=europe-west1-b --troubleshoot --tunnel-through-iap
+
+ERROR: (gcloud.compute.ssh) [/opt/homebrew/bin/ssh] exited with return code [255].

@@ -1,0 +1,381 @@
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_5_Allocate_a_virtual_machine_in_the_cloud/exercise.sh:4> echo '\n\n initialize terraform...\n'
+
+
+ initialize terraform...
+
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_5_Allocate_a_virtual_machine_in_the_cloud/exercise.sh:5> terraform init
+
+[0m[1mInitializing the backend...[0m
+
+[0m[1mInitializing provider plugins...[0m
+- Reusing previous version of hashicorp/google from the dependency lock file
+- Reusing previous version of hashicorp/google-beta from the dependency lock file
+- Using previously-installed hashicorp/google v5.34.0
+- Using previously-installed hashicorp/google-beta v5.34.0
+
+[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[0m[32m
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.[0m
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_5_Allocate_a_virtual_machine_in_the_cloud/exercise.sh:8> echo '\n\n launch vm in gcloud via terraform...\n'
+
+
+ launch vm in gcloud via terraform...
+
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_5_Allocate_a_virtual_machine_in_the_cloud/exercise.sh:9> terraform apply -auto-approve
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # google_compute_firewall.firewall[0m will be created
+[0m  [32m+[0m[0m resource "google_compute_firewall" "firewall" {
+      [32m+[0m[0m creation_timestamp = (known after apply)
+      [32m+[0m[0m destination_ranges = (known after apply)
+      [32m+[0m[0m direction          = (known after apply)
+      [32m+[0m[0m enable_logging     = (known after apply)
+      [32m+[0m[0m id                 = (known after apply)
+      [32m+[0m[0m name               = "firewall"
+      [32m+[0m[0m network            = "ipv6net"
+      [32m+[0m[0m priority           = 1000
+      [32m+[0m[0m project            = "capable-sphinx-442212-k8"
+      [32m+[0m[0m self_link          = (known after apply)
+      [32m+[0m[0m source_ranges      = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+
+      [32m+[0m[0m allow {
+          [32m+[0m[0m ports    = [
+              [32m+[0m[0m "22",
+            ]
+          [32m+[0m[0m protocol = "tcp"
+        }
+      [32m+[0m[0m allow {
+          [32m+[0m[0m ports    = []
+          [32m+[0m[0m protocol = "icmp"
+        }
+    }
+
+[1m  # google_compute_instance.tf_vm[0m will be created
+[0m  [32m+[0m[0m resource "google_compute_instance" "tf_vm" {
+      [32m+[0m[0m can_ip_forward       = false
+      [32m+[0m[0m cpu_platform         = (known after apply)
+      [32m+[0m[0m current_status       = (known after apply)
+      [32m+[0m[0m deletion_protection  = false
+      [32m+[0m[0m effective_labels     = (known after apply)
+      [32m+[0m[0m guest_accelerator    = (known after apply)
+      [32m+[0m[0m id                   = (known after apply)
+      [32m+[0m[0m instance_id          = (known after apply)
+      [32m+[0m[0m label_fingerprint    = (known after apply)
+      [32m+[0m[0m machine_type         = "n1-standard-1"
+      [32m+[0m[0m metadata_fingerprint = (known after apply)
+      [32m+[0m[0m min_cpu_platform     = (known after apply)
+      [32m+[0m[0m name                 = "my-devops-vm"
+      [32m+[0m[0m project              = "capable-sphinx-442212-k8"
+      [32m+[0m[0m self_link            = (known after apply)
+      [32m+[0m[0m tags_fingerprint     = (known after apply)
+      [32m+[0m[0m terraform_labels     = (known after apply)
+      [32m+[0m[0m zone                 = "europe-west1-b"
+
+      [32m+[0m[0m boot_disk {
+          [32m+[0m[0m auto_delete                = true
+          [32m+[0m[0m device_name                = (known after apply)
+          [32m+[0m[0m disk_encryption_key_sha256 = (known after apply)
+          [32m+[0m[0m kms_key_self_link          = (known after apply)
+          [32m+[0m[0m mode                       = "READ_WRITE"
+          [32m+[0m[0m source                     = (known after apply)
+
+          [32m+[0m[0m initialize_params {
+              [32m+[0m[0m image                  = "ubuntu-os-cloud/ubuntu-2004-lts"
+              [32m+[0m[0m labels                 = (known after apply)
+              [32m+[0m[0m provisioned_iops       = (known after apply)
+              [32m+[0m[0m provisioned_throughput = (known after apply)
+              [32m+[0m[0m size                   = (known after apply)
+              [32m+[0m[0m type                   = (known after apply)
+            }
+        }
+
+      [32m+[0m[0m network_interface {
+          [32m+[0m[0m internal_ipv6_prefix_length = (known after apply)
+          [32m+[0m[0m ipv6_access_type            = (known after apply)
+          [32m+[0m[0m ipv6_address                = (known after apply)
+          [32m+[0m[0m name                        = (known after apply)
+          [32m+[0m[0m network                     = "default"
+          [32m+[0m[0m network_ip                  = (known after apply)
+          [32m+[0m[0m stack_type                  = (known after apply)
+          [32m+[0m[0m subnetwork                  = (known after apply)
+          [32m+[0m[0m subnetwork_project          = (known after apply)
+
+          [32m+[0m[0m access_config {
+              [32m+[0m[0m nat_ip       = (known after apply)
+              [32m+[0m[0m network_tier = (known after apply)
+            }
+        }
+    }
+
+[1m  # google_compute_network.ipv6net[0m will be created
+[0m  [32m+[0m[0m resource "google_compute_network" "ipv6net" {
+      [32m+[0m[0m auto_create_subnetworks                   = false
+      [32m+[0m[0m delete_default_routes_on_create           = false
+      [32m+[0m[0m gateway_ipv4                              = (known after apply)
+      [32m+[0m[0m id                                        = (known after apply)
+      [32m+[0m[0m internal_ipv6_range                       = (known after apply)
+      [32m+[0m[0m mtu                                       = (known after apply)
+      [32m+[0m[0m name                                      = "ipv6net"
+      [32m+[0m[0m network_firewall_policy_enforcement_order = "AFTER_CLASSIC_FIREWALL"
+      [32m+[0m[0m numeric_id                                = (known after apply)
+      [32m+[0m[0m project                                   = "capable-sphinx-442212-k8"
+      [32m+[0m[0m routing_mode                              = (known after apply)
+      [32m+[0m[0m self_link                                 = (known after apply)
+    }
+
+[1m  # google_compute_subnetwork.ipv6subnet[0m will be created
+[0m  [32m+[0m[0m resource "google_compute_subnetwork" "ipv6subnet" {
+      [32m+[0m[0m creation_timestamp         = (known after apply)
+      [32m+[0m[0m external_ipv6_prefix       = (known after apply)
+      [32m+[0m[0m fingerprint                = (known after apply)
+      [32m+[0m[0m gateway_address            = (known after apply)
+      [32m+[0m[0m id                         = (known after apply)
+      [32m+[0m[0m internal_ipv6_prefix       = (known after apply)
+      [32m+[0m[0m ip_cidr_range              = "10.0.0.0/8"
+      [32m+[0m[0m ipv6_access_type           = "EXTERNAL"
+      [32m+[0m[0m ipv6_cidr_range            = (known after apply)
+      [32m+[0m[0m name                       = "ipv6subnet"
+      [32m+[0m[0m network                    = (known after apply)
+      [32m+[0m[0m private_ip_google_access   = (known after apply)
+      [32m+[0m[0m private_ipv6_google_access = (known after apply)
+      [32m+[0m[0m project                    = "capable-sphinx-442212-k8"
+      [32m+[0m[0m purpose                    = (known after apply)
+      [32m+[0m[0m region                     = (known after apply)
+      [32m+[0m[0m secondary_ip_range         = (known after apply)
+      [32m+[0m[0m self_link                  = (known after apply)
+      [32m+[0m[0m stack_type                 = "IPV4_IPV6"
+    }
+
+[1mPlan:[0m 4 to add, 0 to change, 0 to destroy.
+[0m[0m[1mgoogle_compute_network.ipv6net: Creating...[0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Creating...[0m[0m
+[0m[1mgoogle_compute_network.ipv6net: Still creating... [10s elapsed][0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Still creating... [10s elapsed][0m[0m
+[0m[1mgoogle_compute_network.ipv6net: Creation complete after 13s [id=projects/capable-sphinx-442212-k8/global/networks/ipv6net][0m
+[0m[1mgoogle_compute_subnetwork.ipv6subnet: Creating...[0m[0m
+[0m[1mgoogle_compute_firewall.firewall: Creating...[0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Provisioning with 'file'...[0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Still creating... [20s elapsed][0m[0m
+[0m[1mgoogle_compute_subnetwork.ipv6subnet: Still creating... [10s elapsed][0m[0m
+[0m[1mgoogle_compute_firewall.firewall: Still creating... [10s elapsed][0m[0m
+[0m[1mgoogle_compute_firewall.firewall: Creation complete after 12s [id=projects/capable-sphinx-442212-k8/global/firewalls/firewall][0m
+[0m[1mgoogle_compute_instance.tf_vm: Still creating... [30s elapsed][0m[0m
+[0m[1mgoogle_compute_subnetwork.ipv6subnet: Still creating... [20s elapsed][0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Still creating... [40s elapsed][0m[0m
+[0m[1mgoogle_compute_subnetwork.ipv6subnet: Still creating... [30s elapsed][0m[0m
+[0m[1mgoogle_compute_subnetwork.ipv6subnet: Creation complete after 31s [id=projects/capable-sphinx-442212-k8/regions/europe-west1/subnetworks/ipv6subnet][0m
+[0m[1mgoogle_compute_instance.tf_vm: Still creating... [50s elapsed][0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Creation complete after 51s [id=projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm][0m
+[0m[1m[32m
+Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
+[0m+/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_5_Allocate_a_virtual_machine_in_the_cloud/exercise.sh:14> echo '\n\n Waiting for ssh connection...\n'
+
+
+ Waiting for ssh connection...
+
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_5_Allocate_a_virtual_machine_in_the_cloud/exercise.sh:15> sleep 15
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_5_Allocate_a_virtual_machine_in_the_cloud/exercise.sh:12> nohup gcloud compute ssh '--ssh-flag=-L 8080:localhost:3000' '--zone=europe-west1-b' my-devops-vm '--command=chmod +x ./artifact.bin && ./artifact.bin'
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_5_Allocate_a_virtual_machine_in_the_cloud/exercise.sh:17> echo '\n\n Sending request...\n'
+
+
+ Sending request...
+
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_5_Allocate_a_virtual_machine_in_the_cloud/exercise.sh:18> curl -s http://localhost:8080
+Hello, World!+/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_5_Allocate_a_virtual_machine_in_the_cloud/exercise.sh:21> echo '\n\n Destroy vm in gcloud...\n'
+
+
+ Destroy vm in gcloud...
+
++/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_5_Allocate_a_virtual_machine_in_the_cloud/exercise.sh:22> terraform destroy -auto-approve
+[0m[1mgoogle_compute_network.ipv6net: Refreshing state... [id=projects/capable-sphinx-442212-k8/global/networks/ipv6net][0m
+[0m[1mgoogle_compute_instance.tf_vm: Refreshing state... [id=projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm][0m
+[0m[1mgoogle_compute_subnetwork.ipv6subnet: Refreshing state... [id=projects/capable-sphinx-442212-k8/regions/europe-west1/subnetworks/ipv6subnet][0m
+[0m[1mgoogle_compute_firewall.firewall: Refreshing state... [id=projects/capable-sphinx-442212-k8/global/firewalls/firewall][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [31m-[0m destroy[0m
+
+Terraform will perform the following actions:
+
+[1m  # google_compute_firewall.firewall[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "google_compute_firewall" "firewall" {
+      [31m-[0m[0m creation_timestamp      = "2024-12-07T08:02:38.330-08:00" [90m-> null[0m[0m
+      [31m-[0m[0m destination_ranges      = [] [90m-> null[0m[0m
+      [31m-[0m[0m direction               = "INGRESS" [90m-> null[0m[0m
+      [31m-[0m[0m disabled                = false [90m-> null[0m[0m
+      [31m-[0m[0m id                      = "projects/capable-sphinx-442212-k8/global/firewalls/firewall" [90m-> null[0m[0m
+      [31m-[0m[0m name                    = "firewall" [90m-> null[0m[0m
+      [31m-[0m[0m network                 = "https://www.googleapis.com/compute/v1/projects/capable-sphinx-442212-k8/global/networks/ipv6net" [90m-> null[0m[0m
+      [31m-[0m[0m priority                = 1000 [90m-> null[0m[0m
+      [31m-[0m[0m project                 = "capable-sphinx-442212-k8" [90m-> null[0m[0m
+      [31m-[0m[0m self_link               = "https://www.googleapis.com/compute/v1/projects/capable-sphinx-442212-k8/global/firewalls/firewall" [90m-> null[0m[0m
+      [31m-[0m[0m source_ranges           = [
+          [31m-[0m[0m "0.0.0.0/0",
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m source_service_accounts = [] [90m-> null[0m[0m
+      [31m-[0m[0m source_tags             = [] [90m-> null[0m[0m
+      [31m-[0m[0m target_service_accounts = [] [90m-> null[0m[0m
+      [31m-[0m[0m target_tags             = [] [90m-> null[0m[0m
+
+      [31m-[0m[0m allow {
+          [31m-[0m[0m ports    = [
+              [31m-[0m[0m "22",
+            ] [90m-> null[0m[0m
+          [31m-[0m[0m protocol = "tcp" [90m-> null[0m[0m
+        }
+      [31m-[0m[0m allow {
+          [31m-[0m[0m ports    = [] [90m-> null[0m[0m
+          [31m-[0m[0m protocol = "icmp" [90m-> null[0m[0m
+        }
+    }
+
+[1m  # google_compute_instance.tf_vm[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "google_compute_instance" "tf_vm" {
+      [31m-[0m[0m can_ip_forward       = false [90m-> null[0m[0m
+      [31m-[0m[0m cpu_platform         = "Intel Haswell" [90m-> null[0m[0m
+      [31m-[0m[0m current_status       = "RUNNING" [90m-> null[0m[0m
+      [31m-[0m[0m deletion_protection  = false [90m-> null[0m[0m
+      [31m-[0m[0m effective_labels     = {} [90m-> null[0m[0m
+      [31m-[0m[0m enable_display       = false [90m-> null[0m[0m
+      [31m-[0m[0m guest_accelerator    = [] [90m-> null[0m[0m
+      [31m-[0m[0m id                   = "projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm" [90m-> null[0m[0m
+      [31m-[0m[0m instance_id          = "5228436204197367675" [90m-> null[0m[0m
+      [31m-[0m[0m label_fingerprint    = "42WmSpB8rSM=" [90m-> null[0m[0m
+      [31m-[0m[0m labels               = {} [90m-> null[0m[0m
+      [31m-[0m[0m machine_type         = "n1-standard-1" [90m-> null[0m[0m
+      [31m-[0m[0m metadata             = {} [90m-> null[0m[0m
+      [31m-[0m[0m metadata_fingerprint = "mMrelTmRN8Q=" [90m-> null[0m[0m
+      [31m-[0m[0m name                 = "my-devops-vm" [90m-> null[0m[0m
+      [31m-[0m[0m project              = "capable-sphinx-442212-k8" [90m-> null[0m[0m
+      [31m-[0m[0m resource_policies    = [] [90m-> null[0m[0m
+      [31m-[0m[0m self_link            = "https://www.googleapis.com/compute/v1/projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm" [90m-> null[0m[0m
+      [31m-[0m[0m tags                 = [] [90m-> null[0m[0m
+      [31m-[0m[0m tags_fingerprint     = "42WmSpB8rSM=" [90m-> null[0m[0m
+      [31m-[0m[0m terraform_labels     = {} [90m-> null[0m[0m
+      [31m-[0m[0m zone                 = "europe-west1-b" [90m-> null[0m[0m
+
+      [31m-[0m[0m boot_disk {
+          [31m-[0m[0m auto_delete = true [90m-> null[0m[0m
+          [31m-[0m[0m device_name = "persistent-disk-0" [90m-> null[0m[0m
+          [31m-[0m[0m mode        = "READ_WRITE" [90m-> null[0m[0m
+          [31m-[0m[0m source      = "https://www.googleapis.com/compute/v1/projects/capable-sphinx-442212-k8/zones/europe-west1-b/disks/my-devops-vm" [90m-> null[0m[0m
+
+          [31m-[0m[0m initialize_params {
+              [31m-[0m[0m enable_confidential_compute = false [90m-> null[0m[0m
+              [31m-[0m[0m image                       = "https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20241115" [90m-> null[0m[0m
+              [31m-[0m[0m labels                      = {} [90m-> null[0m[0m
+              [31m-[0m[0m provisioned_iops            = 0 [90m-> null[0m[0m
+              [31m-[0m[0m provisioned_throughput      = 0 [90m-> null[0m[0m
+              [31m-[0m[0m resource_manager_tags       = {} [90m-> null[0m[0m
+              [31m-[0m[0m size                        = 10 [90m-> null[0m[0m
+              [31m-[0m[0m type                        = "pd-standard" [90m-> null[0m[0m
+            }
+        }
+
+      [31m-[0m[0m network_interface {
+          [31m-[0m[0m internal_ipv6_prefix_length = 0 [90m-> null[0m[0m
+          [31m-[0m[0m name                        = "nic0" [90m-> null[0m[0m
+          [31m-[0m[0m network                     = "https://www.googleapis.com/compute/v1/projects/capable-sphinx-442212-k8/global/networks/default" [90m-> null[0m[0m
+          [31m-[0m[0m network_ip                  = "10.132.0.14" [90m-> null[0m[0m
+          [31m-[0m[0m queue_count                 = 0 [90m-> null[0m[0m
+          [31m-[0m[0m stack_type                  = "IPV4_ONLY" [90m-> null[0m[0m
+          [31m-[0m[0m subnetwork                  = "https://www.googleapis.com/compute/v1/projects/capable-sphinx-442212-k8/regions/europe-west1/subnetworks/default" [90m-> null[0m[0m
+          [31m-[0m[0m subnetwork_project          = "capable-sphinx-442212-k8" [90m-> null[0m[0m
+
+          [31m-[0m[0m access_config {
+              [31m-[0m[0m nat_ip       = "34.78.184.232" [90m-> null[0m[0m
+              [31m-[0m[0m network_tier = "PREMIUM" [90m-> null[0m[0m
+            }
+        }
+
+      [31m-[0m[0m scheduling {
+          [31m-[0m[0m automatic_restart   = true [90m-> null[0m[0m
+          [31m-[0m[0m min_node_cpus       = 0 [90m-> null[0m[0m
+          [31m-[0m[0m on_host_maintenance = "MIGRATE" [90m-> null[0m[0m
+          [31m-[0m[0m preemptible         = false [90m-> null[0m[0m
+          [31m-[0m[0m provisioning_model  = "STANDARD" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m shielded_instance_config {
+          [31m-[0m[0m enable_integrity_monitoring = true [90m-> null[0m[0m
+          [31m-[0m[0m enable_secure_boot          = false [90m-> null[0m[0m
+          [31m-[0m[0m enable_vtpm                 = true [90m-> null[0m[0m
+        }
+    }
+
+[1m  # google_compute_network.ipv6net[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "google_compute_network" "ipv6net" {
+      [31m-[0m[0m auto_create_subnetworks                   = false [90m-> null[0m[0m
+      [31m-[0m[0m delete_default_routes_on_create           = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_ula_internal_ipv6                  = false [90m-> null[0m[0m
+      [31m-[0m[0m id                                        = "projects/capable-sphinx-442212-k8/global/networks/ipv6net" [90m-> null[0m[0m
+      [31m-[0m[0m mtu                                       = 0 [90m-> null[0m[0m
+      [31m-[0m[0m name                                      = "ipv6net" [90m-> null[0m[0m
+      [31m-[0m[0m network_firewall_policy_enforcement_order = "AFTER_CLASSIC_FIREWALL" [90m-> null[0m[0m
+      [31m-[0m[0m numeric_id                                = "4925380112040972158" [90m-> null[0m[0m
+      [31m-[0m[0m project                                   = "capable-sphinx-442212-k8" [90m-> null[0m[0m
+      [31m-[0m[0m routing_mode                              = "REGIONAL" [90m-> null[0m[0m
+      [31m-[0m[0m self_link                                 = "https://www.googleapis.com/compute/v1/projects/capable-sphinx-442212-k8/global/networks/ipv6net" [90m-> null[0m[0m
+    }
+
+[1m  # google_compute_subnetwork.ipv6subnet[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "google_compute_subnetwork" "ipv6subnet" {
+      [31m-[0m[0m creation_timestamp         = "2024-12-07T08:02:38.785-08:00" [90m-> null[0m[0m
+      [31m-[0m[0m external_ipv6_prefix       = "2600:1900:4010:645:0:0:0:0/64" [90m-> null[0m[0m
+      [31m-[0m[0m gateway_address            = "10.0.0.1" [90m-> null[0m[0m
+      [31m-[0m[0m id                         = "projects/capable-sphinx-442212-k8/regions/europe-west1/subnetworks/ipv6subnet" [90m-> null[0m[0m
+      [31m-[0m[0m ip_cidr_range              = "10.0.0.0/8" [90m-> null[0m[0m
+      [31m-[0m[0m ipv6_access_type           = "EXTERNAL" [90m-> null[0m[0m
+      [31m-[0m[0m name                       = "ipv6subnet" [90m-> null[0m[0m
+      [31m-[0m[0m network                    = "https://www.googleapis.com/compute/v1/projects/capable-sphinx-442212-k8/global/networks/ipv6net" [90m-> null[0m[0m
+      [31m-[0m[0m private_ip_google_access   = false [90m-> null[0m[0m
+      [31m-[0m[0m private_ipv6_google_access = "DISABLE_GOOGLE_ACCESS" [90m-> null[0m[0m
+      [31m-[0m[0m project                    = "capable-sphinx-442212-k8" [90m-> null[0m[0m
+      [31m-[0m[0m purpose                    = "PRIVATE" [90m-> null[0m[0m
+      [31m-[0m[0m region                     = "europe-west1" [90m-> null[0m[0m
+      [31m-[0m[0m secondary_ip_range         = [] [90m-> null[0m[0m
+      [31m-[0m[0m self_link                  = "https://www.googleapis.com/compute/v1/projects/capable-sphinx-442212-k8/regions/europe-west1/subnetworks/ipv6subnet" [90m-> null[0m[0m
+      [31m-[0m[0m stack_type                 = "IPV4_IPV6" [90m-> null[0m[0m
+    }
+
+[1mPlan:[0m 0 to add, 0 to change, 4 to destroy.
+[0m[0m[1mgoogle_compute_subnetwork.ipv6subnet: Destroying... [id=projects/capable-sphinx-442212-k8/regions/europe-west1/subnetworks/ipv6subnet][0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Destroying... [id=projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm][0m[0m
+[0m[1mgoogle_compute_firewall.firewall: Destroying... [id=projects/capable-sphinx-442212-k8/global/firewalls/firewall][0m[0m
+[0m[1mgoogle_compute_subnetwork.ipv6subnet: Still destroying... [id=projects/capable-sphinx-442212-k8/regions/europe-west1/subnetworks/ipv6subnet, 10s elapsed][0m[0m
+[0m[1mgoogle_compute_firewall.firewall: Still destroying... [id=projects/capable-sphinx-442212-k8/global/firewalls/firewall, 10s elapsed][0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Still destroying... [id=projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm, 10s elapsed][0m[0m
+[0m[1mgoogle_compute_firewall.firewall: Destruction complete after 12s[0m
+[0m[1mgoogle_compute_instance.tf_vm: Still destroying... [id=projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm, 20s elapsed][0m[0m
+[0m[1mgoogle_compute_subnetwork.ipv6subnet: Still destroying... [id=projects/capable-sphinx-442212-k8/regions/europe-west1/subnetworks/ipv6subnet, 20s elapsed][0m[0m
+[0m[1mgoogle_compute_subnetwork.ipv6subnet: Destruction complete after 22s[0m
+[0m[1mgoogle_compute_network.ipv6net: Destroying... [id=projects/capable-sphinx-442212-k8/global/networks/ipv6net][0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Still destroying... [id=projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm, 30s elapsed][0m[0m
+[0m[1mgoogle_compute_network.ipv6net: Still destroying... [id=projects/capable-sphinx-442212-k8/global/networks/ipv6net, 10s elapsed][0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Still destroying... [id=projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm, 40s elapsed][0m[0m
+[0m[1mgoogle_compute_network.ipv6net: Still destroying... [id=projects/capable-sphinx-442212-k8/global/networks/ipv6net, 20s elapsed][0m[0m
+[0m[1mgoogle_compute_network.ipv6net: Destruction complete after 22s[0m
+[0m[1mgoogle_compute_instance.tf_vm: Still destroying... [id=projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm, 50s elapsed][0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Still destroying... [id=projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm, 1m0s elapsed][0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Still destroying... [id=projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm, 1m10s elapsed][0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Still destroying... [id=projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm, 1m20s elapsed][0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Still destroying... [id=projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm, 1m30s elapsed][0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Still destroying... [id=projects/capable-sphinx-442212-k8/zones/europe-west1-b/instances/my-devops-vm, 1m40s elapsed][0m[0m
+[0m[1mgoogle_compute_instance.tf_vm: Destruction complete after 1m45s[0m
+[0m[1m[32m
+Destroy complete! Resources: 4 destroyed.
+[0m
