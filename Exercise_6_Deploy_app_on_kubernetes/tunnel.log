@@ -1,0 +1,11 @@
+Script started on Mon Dec 16 17:39:33 2024
+Agent pid 15405
+[1m[7m%[27m[1m[0m                                                                                                                                                                  ]2;men@NB220615MEN:~/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes]1;..on_kubernetes]7;file://NB220615MEN/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes\[0m[27m[24m[J[01;32m➜  [36mExercise_6_Deploy_app_on_kubernetes[00m [K[?1h=[?2004h[0m[27m[24m[J[01;32m➜  [36mExercise_6_Deploy_app_on_kubernetes[00m [01;34mgit:([31mmain[34m) [33m✗[00m [Kmminikube tunnel[?1l>[?2004l
+]2;minikube tunnel]1;minikube✅  Tunnel successfully started
+
+📌  NOTE: Please do not close this terminal as this process must stay alive for the tunnel to be accessible ...
+
+❗  The service/ingress webservice-ingress requires privileged ports to be exposed: [80 443]
+🔑  sudo permission will be asked for it.
+🏃  Starting tunnel for service webservice-ingress.
+Password:

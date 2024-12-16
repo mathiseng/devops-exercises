@@ -1,0 +1,75 @@
+
+#This video gave me basic understanding of components and how to handle specific cases.
+#source: https://www.youtube.com/watch?v=s_o8dwzRlu4&ab_channel=TechWorldwithNana ...In addition to the video i used the official docs
+#for creation of namespaces without terminal i used this resource https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/#create-new-namespaces
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: devops-webservice
+---
+# reference on the documentation with individual adjustments https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webservice-deployment
+  namespace: devops-webservice
+  labels:
+    app: webservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webservice
+  template:
+    metadata:
+      labels:
+        app: webservice
+    spec:
+      containers:
+        - name: webservice
+          # this is my image i uploaded in the previous tasks to my github packages . Access: Public
+          image: ghcr.io/mathiseng/podman-webservice:test
+          ports:
+          - containerPort: 8080
+          env:
+          - name: 'PORT'
+            value: "8080"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: webservice-service
+  namespace: devops-webservice
+spec:
+  selector:
+    app: webservice
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+# For better routes that are accesable in a common way without knowing the specific service port i need Ingress.
+# for understanding ingress i used this video https://www.youtube.com/watch?v=NPFbYpb0I7w&ab_channel=IBMTechnology
+# Also followed this video: https://www.youtube.com/watch?v=80Ew_fsV4rM&ab_channel=TechWorldwithNana and these docs:https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/#create-an-ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webservice-ingress
+  namespace: devops-webservice
+spec:
+  ingressClassName: nginx
+  rules:
+    #To connect to this host i had to map this to the localhost in file /etc/hosts/ as explained in tutorial
+    - host: devops-webservice.de
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: webservice-service
+                port:
+                  number: 8080

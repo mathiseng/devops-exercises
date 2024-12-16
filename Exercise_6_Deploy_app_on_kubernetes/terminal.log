@@ -1,0 +1,126 @@
+Script started on Mon Dec 16 17:37:36 2024
+Agent pid 10202
+[1m[7m%[27m[1m[0m                                                                                                                                                                 
+ 
+]2;men@NB220615MEN:~/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes]1;..on_kubernetes]7;file://NB220615MEN/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes\
+[0m[27m[24m[J[01;32m➜  [36mExercise_6_Deploy_app_on_kubernetes[00m [K[?1h=[?2004h
+
+[0m[27m[24m[J[01;32m➜  [36mExercise_6_Deploy_app_on_kubernetes[00m [01;34mgit:([31mmain[34m) [33m✗[00m [Kscript terminal.log[19Dclear              [14Dminikube delete --all[21Dclear                [16Dminikube enable ingress[14Dstart --driver=docker[?1l>[?2004l
+
+]2;minikube start --driver=docker]1;minikube😄  minikube v1.34.0 on Darwin 14.7.1 (arm64)
+✨  Using the docker driver based on user configuration
+📌  Using Docker Desktop driver with root privileges
+👍  Starting "minikube" primary control-plane node in "minikube" cluster
+🚜  Pulling base image v0.0.45 ...
+🔥  Creating docker container (CPUs=2, Memory=7789MB) ...| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K
+🐳  Preparing Kubernetes v1.31.0 on Docker 27.2.0 ...| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K
+    ▪ Generating certificates and keys ...- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K
+    ▪ Booting up control plane .../ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K
+    ▪ Configuring RBAC rules .../ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K\ WW[K[K| WW[K[K/ WW[K[K- WW[K[K
+🔗  Configuring bridge CNI (Container Networking Interface) ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+[1m[7m%[27m[1m[0m                                                                                                                                                                 
+ 
+]2;men@NB220615MEN:~/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes]1;..on_kubernetes]7;file://NB220615MEN/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes\
+[0m[27m[24m[J[01;32m➜  [36mExercise_6_Deploy_app_on_kubernetes[00m [01;34mgit:([31mmain[34m) [33m✗[00m [K[?1h=[?2004hminikube start --driver=docker[30Dscript terminal.log           [11D[19Dclear              [14Dminikube delete --all[21Dclear                [16Dscript terminal.log[19Dminikube start --driver=docker[30D                              [30D[7mminikube addons enable ingress[27m
+
+[K[A[52C[27mm[27mi[27mn[27mi[27mk[27mu[27mb[27me[27m [27ma[27md[27md[27mo[27mn[27ms[27m [27me[27mn[27ma[27mb[27ml[27me[27m [27mi[27mn[27mg[27mr[27me[27ms[27ms[1B
+[K[?1l>[?2004l
+
+]2;minikube addons enable ingress]1;minikube💡  ingress is an addon maintained by Kubernetes. For any concerns contact minikube on GitHub.
+You can view the list of minikube maintainers at: https://github.com/kubernetes/minikube/blob/master/OWNERS
+💡  After the addon is enabled, please run "minikube tunnel" and your ingress resources would be available at "127.0.0.1"
+    ▪ Using image registry.k8s.io/ingress-nginx/controller:v1.11.2
+    ▪ Using image registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.4.3
+    ▪ Using image registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.4.3
+🔎  Verifying ingress addon...
+🌟  The 'ingress' addon is enabled
+[1m[7m%[27m[1m[0m                                                                                                                                                                 
+ 
+]2;men@NB220615MEN:~/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes]1;..on_kubernetes]7;file://NB220615MEN/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes\
+[0m[27m[24m[J[01;32m➜  [36mExercise_6_Deploy_app_on_kubernetes[00m [01;34mgit:([31mmain[34m) [33m✗[00m [K[?1h=[?2004h[7mkubectl get all -n devops-webservice[27m
+
+[K[A[52C[27mk[27mu[27mb[27me[27mc[27mt[27ml[27m [27mg[27me[27mt[27m [27ma[27ml[27ml[27m [27m-[27mn[27m [27md[27me[27mv[27mo[27mp[27ms[27m-[27mw[27me[27mb[27ms[27me[27mr[27mv[27mi[27mc[27me[1B
+[K[?1l>[?2004l
+
+]2;kubectl get all -n devops-webservice]1;kubectlNo resources found in devops-webservice namespace.
+[1m[7m%[27m[1m[0m                                                                                                                                                                 
+ 
+]2;men@NB220615MEN:~/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes]1;..on_kubernetes]7;file://NB220615MEN/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes\
+[0m[27m[24m[J[01;32m➜  [36mExercise_6_Deploy_app_on_kubernetes[00m [01;34mgit:([31mmain[34m) [33m✗[00m [K[?1h=[?2004h[7mkubectl apply -f webservice.yml[27m
+
+[K[A[52C[27mk[27mu[27mb[27me[27mc[27mt[27ml[27m [27ma[27mp[27mp[27ml[27my[27m [27m-[27mf[27m [27mw[27me[27mb[27ms[27me[27mr[27mv[27mi[27mc[27me[27m.[27my[27mm[27ml[1B
+[K[?1l>[?2004l
+
+]2;kubectl apply -f webservice.yml]1;kubectlnamespace/devops-webservice created
+deployment.apps/webservice-deployment created
+service/webservice-service created
+ingress.networking.k8s.io/webservice-ingress created
+[1m[7m%[27m[1m[0m                                                                                                                                                                 
+ 
+]2;men@NB220615MEN:~/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes]1;..on_kubernetes]7;file://NB220615MEN/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes\
+[0m[27m[24m[J[01;32m➜  [36mExercise_6_Deploy_app_on_kubernetes[00m [01;34mgit:([31mmain[34m) [33m✗[00m [K[?1h=[?2004hkubectl apply -f webservice.yml
+
+[K[A[83C[23Dget all -n devops-webservice[1B
+[K[A[88C[?1l>[?2004l[1B
+
+]2;kubectl get all -n devops-webservice]1;kubectlNAME                                        READY   STATUS              RESTARTS   AGE
+pod/webservice-deployment-859655784-25fzv   0/1     ContainerCreating   0          6s
+pod/webservice-deployment-859655784-4pjzs   0/1     ContainerCreating   0          6s
+pod/webservice-deployment-859655784-vdk7q   0/1     ContainerCreating   0          6s
+
+NAME                         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+service/webservice-service   ClusterIP   10.98.64.200   <none>        8080/TCP   6s
+
+NAME                                    READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/webservice-deployment   0/3     3            0           6s
+
+NAME                                              DESIRED   CURRENT   READY   AGE
+replicaset.apps/webservice-deployment-859655784   3         3         0       6s
+[1m[7m%[27m[1m[0m                                                                                                                                                                 
+ 
+]2;men@NB220615MEN:~/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes]1;..on_kubernetes]7;file://NB220615MEN/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes\
+[0m[27m[24m[J[01;32m➜  [36mExercise_6_Deploy_app_on_kubernetes[00m [01;34mgit:([31mmain[34m) [33m✗[00m [K[?1h=[?2004h[7msudo vim /etc/hosts[27m[19D[27ms[27mu[27md[27mo[27m [27mv[27mi[27mm[27m [27m/[27me[27mt[27mc[27m/[27mh[27mo[27ms[27mt[27ms[?1l>[?2004l
+
+]2;sudo vim /etc/hosts]1;vimPassword:
+[?1049h[>4;2m[?1h=[?2004h[?1004h[1;21r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?25l[21;1H"/etc/hosts" 10L, 245B[2;1H▽[6n[2;1H  [3;1HPzz\[0%m[6n[3;1H           [1;1H[>c]10;?]11;?[1;1H##
+# Host Database[2;16H[K[3;1H#[3;2H[K[4;1H# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1[7Clocalhost
+255.255.255.255 broadcasthost
+::1[13Clocalhost
+127.0.0.1[7Cdevops-webservice.de
+[94m~                                                                                                                                                                 [12;1H~                                                                                                                                                                 [13;1H~                                                                                                                                                                 [14;1H~                                                                                                                                                                 [15;1H~                                                                                                                                                                 [16;1H~                                                                                                                                                                 [17;1H~                                                                                                                                                                 [18;1H~                                                                                                                                                                 [19;1H~                                                                                                                                                                 [20;1H~                                                                                                                                                                 [1;1H[?25h[?4m[27m[23m[29m[m[H[2J[?25l[1;1H##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1[7Clocalhost
+255.255.255.255 broadcasthost
+::1[13Clocalhost
+127.0.0.1[7Cdevops-webservice.de
+[94m~                                                                                                                                                                 [12;1H~                                                                                                                                                                 [13;1H~                                                                                                                                                                 [14;1H~                                                                                                                                                                 [15;1H~                                                                                                                                                                 [16;1H~                                                                                                                                                                 [17;1H~                                                                                                                                                                 [18;1H~                                                                                                                                                                 [19;1H~                                                                                                                                                                 [20;1H~                                                                                                                                                                 [m[21;1H"/etc/hosts" 10L, 245B[1;1H[?25h[?25l[21;1H[K[21;1H:[?25hwq
+[?25l[?2004l[>4;m"/private/etc/hosts" 10L, 245B written
+[23;2t[23;1t
+
+[?1004l[?2004l[?1l>[?1049l[?25h[>4;m[1m[7m%[27m[1m[0m                                                                                                                                                                 
+ 
+]2;men@NB220615MEN:~/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes]1;..on_kubernetes]7;file://NB220615MEN/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes\
+[0m[27m[24m[J[01;32m➜  [36mExercise_6_Deploy_app_on_kubernetes[00m [01;34mgit:([31mmain[34m) [33m✗[00m [K[?1h=[?2004h[7mkubectl get ingress -n devops-webservice --watch[27m[48D[27mk[27mu[27mb[27me[27mc[27mt[27ml[27m [27mg[27me[27mt[27m [27mi[27mn[27mg[27mr[27me[27ms[27ms[27m [27m-[27mn[27m [27md[27me[27mv[27mo[27mp[27ms[27m-[27mw[27me[27mb[27ms[27me[27mr[27mv[27mi[27mc[27me[27m [27m-[27m-[27mw[27ma[27mt[27mc[27mh[?1l>[?2004l
+
+]2;kubectl get ingress -n devops-webservice]1;kubectlNAME                 CLASS   HOSTS                  ADDRESS        PORTS   AGE
+webservice-ingress   nginx   devops-webservice.de   192.168.49.2   80      86s
+
+]2;men@NB220615MEN:~/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes]1;..on_kubernetes]7;file://NB220615MEN/Users/men/Documents/Uni/DEV-OPS/webservice-fork/Exercise_6_Deploy_app_on_kubernetes\
+[0m[27m[24m[J[01;32m➜  [36mExercise_6_Deploy_app_on_kubernetes[00m [K[?1h=[?2004h
+
+[0m[27m[24m[J[01;32m➜  [36mExercise_6_Deploy_app_on_kubernetes[00m [01;34mgit:([31mmain[34m) [33m✗[00m [Kscript request.log[18Dcd Exercise_6_Deploy_app_on_kubernetes[38Dcurl http://127.0.0.1:8080
+
+[K[A[78C[21Ddevops-webservice.de [1B
+[K[A[77C[?1l>[?2004l[1B
+]2;curl devops-webservice.de]1;curlHello, World![1m[7m%[27m[1m[0m
